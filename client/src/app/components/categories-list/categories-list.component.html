@@ -1,0 +1,50 @@
+<div class="container">
+  <h3 class="main-title">My categories</h3>
+</div>
+<div class="section pd-20">
+    <div class="row">
+      <div class="col-md-{{colMd}} box-shadow">
+        <form role="form">
+          <div class="form-group">
+            <label class="control-label" for="newCategory">New category</label>
+            <input class="form-control"
+                   id="newCategory"
+                   placeholder="category"
+                   type="text"
+                   name="newCategory"
+                   [(ngModel)]="newCategory"
+                   [ngModelOptions]="{standalone: true}">
+          </div>
+
+          <button class="btn btn-info"
+                  (click)="create(newCategory);">
+            Add category
+          </button>
+        </form>
+        <div style="height: 2em"></div>
+        <ul class="list-group">
+          <li  *ngFor="let category of categories" (click)="editCategory(category)"
+              class="list-group-item pdl-15 clearfix">
+            <span role="button" >{{category.category}}</span>
+            <span class="pull-right">
+              <button class="btn btn-xs btn-danger"
+                      (click)="delete(category); $event.stopPropagation()">
+                Delete
+              </button>
+            </span>
+          </li>
+        </ul>
+      </div>
+      <div *ngIf="selectedCategory" class="col-md-4 edit-box box-shadow">
+        <h3>Edit category</h3>
+        <div class="form-group">
+          <label class="control-label" for="task">Category: </label>
+          <input class="form-control"
+                 id="task"
+                 [(ngModel)]="selectedCategory.category" placeholder="category">
+        </div>
+        <button class="btn btn-default" (click)="cancel()">Cancel</button>
+        <button class="btn  btn-info" (click)="update()">Save</button>
+      </div>
+    </div>
+</div>
