@@ -9,7 +9,7 @@ npm install
 
 cd ..
 # run
-gulp 
+gulp
 
 npm run start
 ```
